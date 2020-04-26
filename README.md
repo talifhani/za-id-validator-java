@@ -5,8 +5,8 @@ South African ID number validator written in Java.
 
 ## Usage
 ```java
-IDNumberParser  idNumberParser = new  IDNumberParser("7801014800084");
-IDNumberData  idNumberData = idNumberParser.parse();
+IDNumberParser idNumberParser = new IDNumberParser("7801014800084");
+IDNumberData idNumberData = idNumberParser.parse();
 
 System.out.println("Date Of Birth: " + idNumberData.getBirthdate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)));
 System.out.println("Age: " + idNumberData.getAge());
