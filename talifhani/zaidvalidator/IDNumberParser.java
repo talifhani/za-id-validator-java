@@ -7,17 +7,26 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
 
+/**
+ * @author Tali Luvhengo <tali@semicolon.co.za>
+ */
 enum Nationality {
     SOUTHAFRICAN,
     NONSOUTHAFRICAN,
     REFUGEE
 }
 
+/**
+ * @author Tali Luvhengo <tali@semicolon.co.za>
+ */
 enum Gender {
     MALE,
     FEMALE
 }
 
+/**
+ * @author Tali Luvhengo <tali@semicolon.co.za>
+ */
 public class IDNumberParser
 {
     private LocalDate dateOfBirth;

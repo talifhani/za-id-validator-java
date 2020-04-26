@@ -1,5 +1,8 @@
 package talifhani.zaidvalidator;
 
+/**
+ * @author Tali Luvhengo <tali@semicolon.co.za>
+ */
 public class Luhn
 {
 	/**
