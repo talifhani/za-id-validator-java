@@ -36,18 +36,9 @@ public class IDNumberParser
 
     private String idNumber;
 
-    public IDNumberParser(String idNumber) throws Exception
-    {
-        if (idNumber.length() != 13) {
-            throw new Exception("ID Length invalid: ZA ID Number must be 13 digits long");
-        }
-
-        this.idNumber = idNumber;
-    }
-
     public static final DateTimeFormatter TWO_YEAR_FORMATTER = new DateTimeFormatterBuilder()
-    .appendValueReduced(ChronoField.YEAR, 2, 2, 1950)
-    .toFormatter();
+        .appendValueReduced(ChronoField.YEAR, 2, 2, 1950)
+        .toFormatter();
 
     private void breakDownIDNumber()
     {
@@ -66,12 +57,18 @@ public class IDNumberParser
         this.checkBit        = Integer.parseInt(idNumber.substring(12, 13));
     }
 
-    public IDNumberData parse()
+    public IDNumberData parse(String idNumber) throws Exception
     {
+        if (idNumber.length() != 13) {
+            throw new Exception("ID Length invalid: ZA ID Number must be 13 digits long");
+        }
+
+        this.idNumber = idNumber;
+
         this.breakDownIDNumber();
 
         return new IDNumberData(
-            this.idNumber,
+            idNumber,
             this.dateOfBirth,
             this.genderNum >= 5000 ? Gender.MALE : Gender.FEMALE,
             this.citizenshipNum == 0 ? Nationality.SOUTHAFRICAN : (this.citizenshipNum == 1 ? Nationality.NONSOUTHAFRICAN : Nationality.REFUGEE),
