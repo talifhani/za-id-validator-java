@@ -9,6 +9,12 @@ public class Luhn
 	 * @param string $number
 	 * @return int
 	 */
+
+	/**
+	 *
+	 * @param number
+	 * @return int
+	 */
 	public static int generate(String number)
 	{
 		// if ( ! ctype_digit($number))

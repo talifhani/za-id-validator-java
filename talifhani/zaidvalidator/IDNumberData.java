@@ -14,6 +14,13 @@ public class IDNumberData{
     private Nationality citizenship;
     private boolean valid;
 
+    /**
+     * @param idNumber
+     * @param dateOfBirth
+     * @param gender
+     * @param citizenship
+     * @param valid
+     */
     public IDNumberData(String idNumber, LocalDate dateOfBirth, Gender gender, Nationality citizenship, boolean valid)
     {
         this.idNumber         = idNumber;
@@ -23,16 +30,25 @@ public class IDNumberData{
         this.valid            = valid;
     }
 
+    /**
+     * @return String
+     */
     public String getIdNumber()
     {
         return this.idNumber;
     }
 
+    /**
+     * @return LocalDate
+     */
     public LocalDate getBirthdate()
     {
         return this.dateOfBirth;
     }
 
+    /**
+     * @return int
+     */
     public int getAge()
     {
         LocalDate today = LocalDate.now();
@@ -40,16 +56,25 @@ public class IDNumberData{
         return p.getYears();
     }
 
+    /**
+     * @return Gender
+     */
     public Gender getGender()
     {
         return this.gender;
     }
 
+    /**
+     * @return Nationality
+     */
     public Nationality getCitizenShip()
     {
         return this.citizenship;
     }
 
+    /**
+     * @return boolean
+     */
     public boolean isValid()
     {
         return this.valid;
