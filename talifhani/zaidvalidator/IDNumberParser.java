@@ -33,18 +33,26 @@ public class IDNumberParser
     private int genderNum;
     private int citizenshipNum;
     private int checkBit;
+    private Year pivotYear;
 
     private String idNumber;
 
-    public static final DateTimeFormatter TWO_YEAR_FORMATTER = new DateTimeFormatterBuilder()
-        .appendValueReduced(ChronoField.YEAR, 2, 2, 1950)
+    public static final DateTimeFormatter getTwoYearFormatter(Year pivotYear) {
+        return new DateTimeFormatterBuilder()
+        .appendValueReduced(ChronoField.YEAR, 2, 2, pivotYear.getValue())
         .toFormatter();
+    }
 
     private void breakDownIDNumber()
     {
         String birthDate = idNumber.substring(0, 6);
 
-        int year = Year.parse(birthDate.substring(0, 2), TWO_YEAR_FORMATTER).getValue();
+        if (pivotYear == null)
+        {
+            pivotYear = Year.of(Year.now().getValue() - 100);// Assume ID belongs to someone not older than 100 years
+        }
+
+        int year = Year.parse(birthDate.substring(0, 2), IDNumberParser.getTwoYearFormatter(pivotYear)).getValue();
           
         this.dateOfBirth = LocalDate.of(
             year, 
@@ -80,5 +88,12 @@ public class IDNumberParser
     {
         String withoutChecksum = idNumber.substring(0, idNumber.length() - 1);
 		return Luhn.generate(withoutChecksum);
+    }
+
+    public IDNumberParser setPivotYear(Year pivotYear)
+    {
+        this.pivotYear = pivotYear;
+
+        return this;
     }
 }
